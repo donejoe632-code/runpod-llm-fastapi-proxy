@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  runpod-proxy:
+    build: .
+    container_name: runpod_llm_gateway
+    ports:
+      - "8000:8000"
+    environment:
+      - RUNPOD_API_KEY=${RUNPOD_API_KEY:-mock_key}
+      - RUNPOD_ENDPOINT_URL=https://api.runpod.ai/v2/YOUR_POD_ID/openai/v1
+      - GATEWAY_SECRET_KEY=ivan_gateway_secret_2026
+    restart: unless-stopped
